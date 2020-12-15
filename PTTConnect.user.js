@@ -103,7 +103,16 @@ const msg = {
             PTT.unlock();
           }
         }, args: []
-      }
+      },
+      { reg: /大富翁 排行榜|發表次數排行榜/, input: 'q' },
+      { reg: /本日十大熱門話題/, input: 'q' },
+      { reg: /本週五十大熱門話題/, input: 'q' },
+      { reg: /每小時上站人次統計/, input: 'q' },
+      { reg: /本站歷史 \.\.\.\.\.\.\./, input: 'q' },
+      { reg: /看 板  目錄數   檔案數     byte數   總 分     板   主/, input: 'q' },
+      { reg: /看 板  目錄數   檔案數     byte數   總 分     板   主/, input: 'q' },
+      { reg: /名次──────範本───────────次數/, input: 'q' },
+
     ]
   }
   PTT.wind = window;
@@ -271,7 +280,9 @@ const msg = {
     const lineresult = PTT.screenHaveText(/目前顯示: 第 (\d+)~(\d+) 行/);
     const startline = lineresult[1];
     const endline = lineresult[2];
-    const targetline = PTTPost.endline - startline + 1;
+    let targetline = PTTPost.endline - startline + 1;
+    if (startline < 5) targetline += 1;
+    //console.log("(targetline,PTTPost.endline,startline)", targetline, PTTPost.endline, startline);
     if (PTTPost.posttime === "") {
       let result = PTT.screenHaveText(/時間  (\S{3} \S{3} ...\d{2}:\d{2}:\d{2} \d{4})/);
       PTTPost.posttime = new Date(result[1]);
@@ -286,6 +297,7 @@ const msg = {
     }
     for (let i = targetline; i < PTT.screen.length; i++) {
       const line = PTT.screen[i];
+      //console.log(i + "," + line);
       const result = /^(→ |推 |噓 )(.+): (.*)(\d\d)\/(\d\d) (\d\d):(\d\d)/.exec(line);
       if (result != null) {
         let content = result[3];
@@ -362,7 +374,7 @@ const msg = {
           msg.PostMessage("alert", { type: false, msg: "登入失敗，帳號或密碼有誤。" });
           PTT.unlock();
         }
-        else if (PTT.screenHaveText(/上方為使用者心情點播留言區/)) {
+        else if (PTT.screenHaveText(/上方為使用者心情點播留言區|【 精華公佈欄 】/)) {
           msg.PostMessage("alert", { type: true, msg: "登入成功。" });
           PTT.login = true;
           PTT.unlock();

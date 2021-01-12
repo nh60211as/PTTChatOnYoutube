@@ -1,73 +1,101 @@
 # Youtube聊天室顯示PTT推文
 
-在Youtube的聊天室上面載入PTT推文。
+在Youtube/Holotools的網頁載入PTT討論串推文
 
-實況紀錄設定好開台時間會自動計算影片當下的推文，重現影片播放當時討論串的討論狀況。
+插件主要有以下兩個功能
 
-實況的話會定時載入新推文，並自動滾動到最下面。
+1. 實況:即時更新討論串推文，並且可以推文參與討論
+2. 實況紀錄:設定好影片開台時間後就能根據影片時間顯示當時的推文
+(實況紀錄目前僅支援Youtube實況影片)
 
-![](https://i.imgur.com/nrwYuXX.png "預覽圖")
+![](https://raw.githubusercontent.com/zoosewu/PTTChatOnYoutube/master/images/samplemain.gif "預覽圖")
 
-## 如何開始使用
+## 如何安裝
 
-推薦使用violentmonkey腳本載入器，這是在chrome、firefox皆可使用的腳本載入程式。使用Tampermonkey及Greasymonkey不保證能正常運作。
+**新使用者:**
 
-腳本下載點請[點我](https://greasyfork.org/zh-TW/scripts/418469-youtubechatonptt)。
+1.[點我](https://violentmonkey.github.io/)安裝暴力猴
 
-1.下載腳本後打開實況或實況紀錄，聊天室左上角會有一個P的按鈕，點開就能打開介面。
+2.[點我](https://greasyfork.org/zh-TW/scripts/418469-pttchatonyt)安裝本插件
 
-2.實況紀錄:請先設定開台時間，腳本會自動預設為發文之後才開台，所以實況18:00開台而討論串在18:04發文的話請另外勾選發文前已開台。
-實況:請直接跳過此步驟。
+**舊使用者:**
 
-3.輸入PTT帳號與密碼後登入
-目前尚未廣泛測試，請大家第一次用的時候輸入錯的帳號密碼測試一下google會不會跳你的帳號被盜用，
-如果有的話請回報給我。
+腳本安裝之後每天會自動更新一次
 
-4.輸入包含看板名稱的完整文章代碼。
-(文章完整代碼獲得方法:在文章標題或文章內部鍵入大寫Q即可顯示複製)
+強制檢查更新:點右上角的暴力猴->設定(齒輪圖示)->檢查更新(重新整理圖示)
 
-4.文章讀取完成後會自動轉跳到聊天室介面，並且
-實況紀錄:會自動計算並捲動到影片時間當下的推文。
-實況:會自動每2.5秒重新載入一次推文，並直接捲動到最新推文。
+## 如何使用
 
-如果離開網頁時有個視窗一閃而過，那是term.ptt.cc在登入後關閉視窗的警告動作，是正常現象。
+1. 打開插件
 
-想查看詳細的腳本介紹請[點我](https://github.com/zoosewu/PTTChatOnYoutube/tree/master/homepage)。
+   Youtube:實況或實況紀錄的聊天室左上角會有一個P的按鈕，點了就能打開介面
 
-想查看完整程式碼或是想要自己下載腳本測試修改請[點我](https://github.com/zoosewu/PTTChatOnYoutube/tree/master)。
+   Holotools:右上角會有一個P的按鈕，點了就能打開介面
 
-有任何建議或是問題都可以[點我](https://github.com/zoosewu/PTTChatOnYoutube/issues)進入github issue回報，方便我追蹤進度。
+2. 設定實況紀錄開台時間 **(實況請直接跳過此步驟)**
+
+   觀看實況紀錄前請先設定開台時間，腳本會自動預設為發文之後才開台，
+
+   實況紀錄的開台在討論串發文之前的話請勾選發文前已開台。
+
+3. 登入
+
+   輸入PTT帳號與密碼並登入
+
+4. 輸入文章AID搜尋文章
+
+   請輸入包含看板名稱的完整文章代碼，範例:**#1V-u9-Uc (C_Chat)**
+
+   (文章完整代碼獲得方法:在文章標題或文章內部鍵入大寫Q即可顯示複製)
+
+5. 享受你的聊天室: )
+
+   文章讀取完成後會自動轉跳到聊天室介面
+
+   實況紀錄:會自動計算影片當下的時間並捲動到當時的推文。
+
+   實況:會自動每2.5秒重新載入一次推文，並且可以推文參與討論。
+
+如果離開網頁時有個視窗一閃而過，那是背景執行的term.ptt.cc關閉視窗的警告動作，是正常現象。
+
+[腳本介紹](https://github.com/zoosewu/PTTChatOnYoutube/tree/master/homepage): 如果你想想查看詳細的腳本介紹。
+
+[Github](https://github.com/zoosewu/PTTChatOnYoutube/tree/master): 如果你想查看完整程式碼或是想要自己下載腳本測試、修改。
+
+[回報問題或建議](https://github.com/zoosewu/PTTChatOnYoutube/issues): 有任何建議或是問題都可以在這邊回報，方便我追蹤進度。
 
 如果你沒有github帳號，也可以依照[問題回報範例](https://github.com/zoosewu/PTTChatOnYoutube/blob/master/.github/ISSUE_TEMPLATE/bug-report.md)及[建議範例](https://github.com/zoosewu/PTTChatOnYoutube/blob/master/.github/ISSUE_TEMPLATE/feature-request.md)在PTT內私信給我(Zoosewu)。
 
 ## 腳本功能
-全部都在前端計算，用你的瀏覽器撈資料再顯示出來。
+插件所有資料全部都在你的瀏覽器處理，
+用你的瀏覽器撈資料再顯示出來，
+沒有經過第三方的伺服器。
 
 紀錄重播功能
 * 在Youtube實況紀錄顯示PTT推文。
-* 設定好實況開台時間後會推算影片當下時間並重現影片播放當時討論串的討論狀況。
+* 自動計算影片當下的時間並捲動到當時的推文。
 
 實況功能
 * 在Youtube實況顯示PTT推文。
 * 定時更新文章最新推文。
+* 直接推文參與討論。
 
 ## 其他注意事項
 
 **term.ptt.cc使用者注意須知**
 
     如果你是透過瀏覽器使用PTT，並且有安裝其他PTT的輔助腳本例如自動登入/自動跳過畫面的話，
-    請在腳本最前面加上以下兩行程式碼，這是讓PTT如果不是在主視窗而是網頁內的元素時腳本就自動失效。
+    請在"其他"腳本最前面加上以下兩行程式碼，這是讓其他腳本不會干擾背景執行的PTT。
 ```js
 let isTopframe = (window.top == window.self);
 if (!isTopframe) throw "[Script Stopped: This script should run in top frame only.]";
 ```
 新增完之後應該長這樣：
-![在PTT腳本附加額外程式碼的正確位置](https://i.imgur.com/DHwFxSY.png "腳本間加程式碼示意圖")
+![在PTT腳本附加額外程式碼的正確位置](https://raw.githubusercontent.com/zoosewu/PTTChatOnYoutube/master/images/addscript.png "腳本間加程式碼示意圖")
 
 **有時候P的按鈕沒有冒出來給我用**
 
-    如果你是從youtube首頁或建議影片點進影片因為沒有重新載入頁面所以不會啟動。
-    只要重新整理就能恢復正常了。
+    請到github issue回報給我。
 
 **如果出現奇怪的現象或是你想了解腳本實際運作的情況**
 
@@ -83,7 +111,9 @@ if (!isTopframe) throw "[Script Stopped: This script should run in top frame onl
 
     本插件並且沒有架設任何伺服器去撈取資料，僅是單純的在你的前端開一個PTT幫你登入。
 
-    並且所有程式碼都沒有做任何的壓縮或混淆，在greasyfork、github以及你的瀏覽器都可以查看完整的程式碼以供任何人檢視，
+    並且帳號密碼的傳輸過程都有加密過，盡可能保護帳號的安全性。
+
+    所有程式碼都沒有做任何的壓縮或混淆，在greasyfork、github以及你的瀏覽器都可以查看完整的程式碼以供任何人檢視，
 
     如果對此插件還有疑慮的話請勿使用。
 
@@ -99,10 +129,6 @@ if (!isTopframe) throw "[Script Stopped: This script should run in top frame onl
 
     晚上為PTT使用尖峰時段，負載過大時PTT會不給連線，只能稍微等一下再重新嘗試。
 
-**可以直接用插件推文嗎**
-
-    未來會實作。
-
 **插件的自動滾動有時候會壞掉**
 
     請到github issue回報給我，並詳述什麼情況下會壞掉，壞掉前最後一次滾動的樣子有沒有異常。
@@ -117,10 +143,11 @@ if (!isTopframe) throw "[Script Stopped: This script should run in top frame onl
 
 ## 腳本預覽圖
 
-![](https://i.imgur.com/xxYMYZ4.png "關閉預覽圖")
-![](https://i.imgur.com/HCJksZr.png "預覽圖1")
-![](https://i.imgur.com/UwDHu7i.png "預覽圖2")
-![](https://i.imgur.com/Xn87juc.png "預覽圖3")
+![](https://raw.githubusercontent.com/zoosewu/PTTChatOnYoutube/master/images/sample1.png "關閉預覽圖")
+![](https://raw.githubusercontent.com/zoosewu/PTTChatOnYoutube/master/images/sample2.png "預覽圖1")
+![](https://raw.githubusercontent.com/zoosewu/PTTChatOnYoutube/master/images/sample3.png "預覽圖2")
+![](https://raw.githubusercontent.com/zoosewu/PTTChatOnYoutube/master/images/sample4.png "預覽圖3")
+![](https://raw.githubusercontent.com/zoosewu/PTTChatOnYoutube/master/images/sample5.png "預覽圖4")
 
 ## 聲明
 
